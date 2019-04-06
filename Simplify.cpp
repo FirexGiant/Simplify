@@ -1,6 +1,9 @@
 #include <iostream>
 #include <cctype>
+#include <cstdlib>
+#include <ctime>
 #include <windows.h>
+#include "Simplify.hpp"
 
 using namespace std;
 
@@ -25,8 +28,7 @@ namespace Simplify{
     }
   }
 
-  //ik this seems like a random function and that is because it is
-  //I made it to go with a text adventure game engine
+  //ik this seems like a random function and that is because I made it to go with a text adventure game engine
   void print(string string_to_print, int int_to_print, bool new_line = true){
     if(new_line){
       cout << string_to_print << "" << int_to_print << endl;
@@ -53,6 +55,25 @@ namespace Simplify{
     }
   }
 
+  //ik this seems like a random function and that is because I made it to go with a text adventure game engine
+  void typeout(string string_to_print, int int_to_print, bool new_line = true){
+    if(new_line){
+      for(int i = 0; i < string_to_print.length(); i++){
+        cout << string_to_print[i];
+        Sleep(35);
+      }
+      cout << "" << int_to_print;
+      cout << "\n";
+    }
+    else{
+      for(int i = 0; i < string_to_print.length(); i++){
+        cout << string_to_print[i];
+        Sleep(35);
+      }
+      cout << "" << int_to_print;
+    }
+  }
+
   //change case of string
   void ConvertToUpper(string &string_to_change){
     for(int i = 0; i < string_to_change.length(); i++){
@@ -66,7 +87,7 @@ namespace Simplify{
     }
   }
 
-  //return lowercase version of string
+  //return changed case of string
   string ToUpper(string string_to_change){
     for(int i = 0; i < string_to_change.length(); i++){
       string_to_change[i] = toupper(string_to_change[i]);
@@ -81,7 +102,7 @@ namespace Simplify{
     return string_to_change;
   }
 
-  //Get user input (ik this should be by the print stuff, but I needed the ToLower() method)
+  //Get user input
   void Input(string &variable, bool to_lower = true){
     string user_input;
     cout << ">";
@@ -110,6 +131,24 @@ namespace Simplify{
         print("Error! Try again!");
       }
     }
+  }
+
+  //Returns random number
+  int Random(int min_number, int max_number){
+    srand(time(NULL));
+    return rand() % (max_number-min_number) + min_number;
+  }
+
+  //Changes integer variable to random number
+  void ChangeToRandom(int min_number, int max_number, int &int_to_change){
+    srand(time(NULL));
+    int_to_change = rand() % (max_number-min_number) + min_number;
+  }
+
+  //Decreases variable by random number
+  void DecreaseByRandom(int min_number, int max_number, int &int_to_decrease){
+    srand(time(NULL));
+    int_to_decrease -= rand() % (max_number-min_number) + min_number;
   }
 
 }

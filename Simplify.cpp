@@ -8,86 +8,75 @@
 using namespace std;
 
 namespace Simplify{
+  //// PRINT FUNCTIONS ////
 
-  //print functions
-  void print(string string_to_print, bool new_line = true){
-    if(new_line){
-      cout << string_to_print << endl;
+  //Write to console and then go to a new line
+  void PrintLine(string string_to_print){
+    cout << string_to_print << endl;
+  }
+
+  void PrintLine(int int_to_print){
+    cout << "" << int_to_print << endl;
+  }
+
+  //Write to console and then stay on the same line
+  void Print(string string_to_print){
+    cout << string_to_print;
+  }
+
+  void Print(int int_to_print){
+    cout << "" << int_to_print;
+  }
+
+  //Write out a string to the console character by character and then go to a new line
+  void TypeoutLine(string string_to_typeout, int speed){
+    for(int i = 0; i < string_to_typeout.length(); i++){
+      cout << string_to_typeout[i];
+      Sleep(speed);
     }
-    else{
-      cout << string_to_print;
+    cout << "\n";
+  }
+
+  //Write out a string to the console character by character and stay on the same line
+  void Typeout(string string_to_typeout, int speed){
+    for(int i = 0; i < string_to_typeout.length(); i++){
+      cout << string_to_typeout[i];
+      Sleep(speed);
     }
   }
 
-  void print(int int_to_print, bool new_line = true){
-    if(new_line){
-      cout << "" << int_to_print << endl;
-    }
-    else{
-      cout << "" << int_to_print;
-    }
+
+  //// I/O FUNCTIONS ////
+
+  //Get user input
+  string Input(){
+    string user_input;
+    getline(cin, user_input);
+    return user_input;
   }
 
-  //ik this seems like a random function and that is because I made it to go with a text adventure game engine
-  void print(string string_to_print, int int_to_print, bool new_line = true){
-    if(new_line){
-      cout << string_to_print << "" << int_to_print << endl;
-    }
-    else{
-      cout << string_to_print << "" << int_to_print;
-    }
+  //Change given variable to user input
+  void ChangeToInput(string &variable){
+    getline(cin, variable);
   }
 
-  //print out a string letter by letter
-  void typeout(string string_to_print, bool new_line = true){
-    if(new_line){
-      for(int i = 0; i < string_to_print.length(); i++){
-        cout << string_to_print[i];
-        Sleep(35);
-      }
-      cout << "\n";
-    }
-    else{
-      for(int i = 0; i < string_to_print.length(); i++){
-        cout << string_to_print[i];
-        Sleep(35);
-      }
-    }
-  }
 
-  //ik this seems like a random function and that is because I made it to go with a text adventure game engine
-  void typeout(string string_to_print, int int_to_print, bool new_line = true){
-    if(new_line){
-      for(int i = 0; i < string_to_print.length(); i++){
-        cout << string_to_print[i];
-        Sleep(35);
-      }
-      cout << "" << int_to_print;
-      cout << "\n";
-    }
-    else{
-      for(int i = 0; i < string_to_print.length(); i++){
-        cout << string_to_print[i];
-        Sleep(35);
-      }
-      cout << "" << int_to_print;
-    }
-  }
+  //// CHANGE CASE FUNCTIONS ////
 
-  //change case of string
-  void ConvertToUpper(string &string_to_change){
+  //Change the case of string to uppercase or lowercase
+  void ChangeToUpper(string &string_to_change){
     for(int i = 0; i < string_to_change.length(); i++){
       string_to_change[i] = toupper(string_to_change[i]);
     }
   }
 
-  void ConvertToLower(string &string_to_change){
+  void ChangeToLower(string &string_to_change){
     for(int i = 0; i < string_to_change.length(); i++){
       string_to_change[i] = tolower(string_to_change[i]);
     }
   }
 
-  //return changed case of string
+  //Return the changed case of string
   string ToUpper(string string_to_change){
     for(int i = 0; i < string_to_change.length(); i++){
       string_to_change[i] = toupper(string_to_change[i]);
@@ -102,38 +91,10 @@ namespace Simplify{
     return string_to_change;
   }
 
-  //Get user input
-  void Input(string &variable, bool to_lower = true){
-    string user_input;
-    cout << ">";
-    getline(cin, user_input);
-    if (to_lower){
-      variable = ToLower(user_input);
-    }
-    else{
-      variable = user_input;
-    }
-  }
 
-  //Confirm something
-  bool Confirm(){
-    string answer;
-    for(;;){
-      print("Are you sure? [y/n]");
-      Input(answer);
-      if(answer == "y" || answer == "yes"){
-        return true;
-      }
-      else if(answer == "n" || answer == "no"){
-        return false;
-      }
-      else{
-        print("Error! Try again!");
-      }
-    }
-  }
+  //// RANDOM NUMBER FUNCTIONS ////
 
-  //Returns random number
+  //Returns random number from within given range
   int Random(int min_number, int max_number){
     srand(time(NULL));
     return rand() % (max_number-min_number) + min_number;
@@ -143,6 +104,12 @@ namespace Simplify{
   void ChangeToRandom(int min_number, int max_number, int &int_to_change){
     srand(time(NULL));
     int_to_change = rand() % (max_number-min_number) + min_number;
+  }
+
+  //Increases variable by random number
+  void IncreaseByRandom(int min_number, int max_number, int &int_to_increase){
+    srand(time(NULL));
+    int_to_increase += rand() % (max_number-min_number) + min_number;
   }
 
   //Decreases variable by random number

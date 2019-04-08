@@ -13,10 +13,10 @@ A basic "library" to simplify c++ a little bit. Similar to boost.
 
 ## NEWS ##
 #### Cleanup of whole project
-*Header and source file organized 
+* Header and source file organized 
 
-*New functions added
+* New functions added
 
-*Old functions modified
+* Old functions modified
 
-*Some functions removed
+* Some functions removed
